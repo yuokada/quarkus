@@ -10,6 +10,7 @@ import io.quarkus.builder.item.SimpleBuildItem;
  * <ul>
  * <li>{@code quarkus.application.name} - Sets the application name</li>
  * <li>{@code quarkus.application.version} - Sets the application version</li>
+ * <li>{@code quarkus.application.lts} - Sets whether this is an LTS version</li>
  * </ul>
  *
  * This configuration is intended to be used by extensions that require application metadata,
@@ -21,10 +22,16 @@ public final class ApplicationInfoBuildItem extends SimpleBuildItem {
 
     private final String name;
     private final String version;
+    private final boolean lts;
 
     public ApplicationInfoBuildItem(Optional<String> name, Optional<String> version) {
+        this(name, version, false);
+    }
+
+    public ApplicationInfoBuildItem(Optional<String> name, Optional<String> version, boolean lts) {
         this.name = name.orElse(UNSET_VALUE);
         this.version = version.orElse(UNSET_VALUE);
+        this.lts = lts;
     }
 
     public String getName() {
@@ -33,5 +40,9 @@ public final class ApplicationInfoBuildItem extends SimpleBuildItem {
 
     public String getVersion() {
         return version;
+    }
+
+    public boolean isLts() {
+        return lts;
     }
 }
