@@ -27,6 +27,13 @@ public interface ApplicationConfig {
     Optional<String> version();
 
     /**
+     * Whether this is a Long Term Support (LTS) version of the application.
+     * If not set, defaults to false.
+     */
+    @WithDefault("false")
+    boolean lts();
+
+    /**
      * The header to use for UI Screen (Swagger UI, GraphQL UI etc).
      */
     @WithDefault("{applicationName} (powered by Quarkus)")
